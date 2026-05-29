@@ -1,0 +1,8 @@
+diccionario = {"nombre": "cesar huispe",
+               "fonos": [
+                   988778882,
+                   988877766,
+                   9877666333
+               ]}
+print("nombre ", diccionario["nombre"])
+print("segundo telefono ", diccionario["fonos"][0])

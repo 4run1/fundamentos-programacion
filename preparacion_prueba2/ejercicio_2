@@ -1,0 +1,68 @@
+descuento = 0
+descuento_control = 0
+
+precio_juegos = 45000
+precio_control = 18000
+
+while True:
+    try:
+        cant_juegos = int(input("ingrese cuanto juegos llevara: "))
+        if cant_juegos <= 0:
+            print("Error: cantidad no valida")
+        else:
+            while True:
+                agregar_control = input("¿Desea agregar control? (S/N) ").upper()
+                if agregar_control == "S":
+                    cant_control = int(input("Ingrese la cantidad: "))
+                    if cant_control <= 0:
+                        print("Error: cantidad no valida")
+                    else:
+                        break
+                elif agregar_control == "N":
+                    cant_control = 0
+                    break
+                else:
+                    print("Error: opcion invalida")
+            break        
+            
+    except ValueError:
+        print("Error: el numero debe ser entero")
+
+while True:
+    cliente = input("eres cliente premium'P'o normal'N'? (P/N) ").upper()
+    if cliente == "P" or cliente == "N":
+        break
+    else:
+        print("Error: opcion invalida")
+
+if cant_juegos >= 3 and cliente == "P":
+    descuento = 0.25
+    if agregar_control == "S":
+        descuento_control = 0.10
+    else:
+        precio_control = 0
+elif cant_juegos < 3 and cliente == "P":
+    descuento = 0.15
+elif cant_juegos >= 3 and cliente == "N":
+    descuento = 0.10
+    if agregar_control == "S":
+        descuento_control = 0.05
+    else:
+        cant_control = 0
+else:
+    descuento = 0
+
+sub_total_juegos = precio_juegos * cant_juegos
+sub_total_control = precio_control * cant_control
+sub_descuento_juegos = sub_total_juegos * descuento
+sub_descuento_control = sub_total_control * descuento_control
+
+
+print(f"Boleta:\n\
+SubTotal juegos: {sub_total_juegos} cantidad: {cant_juegos}\n\
+SubTotal control: {sub_total_control} cantidad: {cant_control} \n\
+descuentos: juegos: {sub_descuento_juegos} \n\
+            control: {sub_descuento_control}\n\
+valor final juegos: {sub_total_juegos - sub_descuento_juegos}\n\
+valor final control: {sub_total_control - sub_descuento_control}\n\
+Total general: {(sub_total_juegos - sub_descuento_juegos)+(sub_total_control - sub_descuento_control)}")
